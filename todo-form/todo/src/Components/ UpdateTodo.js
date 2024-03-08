@@ -3,6 +3,34 @@ import ListTodo from "./ListTodo";
 
 const UpdateTodo = () => {
   const [input, setInput] = useState("");
+  const [todo, setTodo] = useState([]);
+  
+  const handleClick = (item) => {
+    // Some data you want to send to the parent
+     setTodo(item);
+
+    
+    // Call the callback function provided by the parent with the data
+    
+  };
+
+  
+
+  const getTodos = async () => {
+    try {
+      const response = await fetch("http://localhost:4000/todos");
+      const jsonData = await response.json();
+      setTodo(jsonData);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+
+  useEffect(() => {
+    getTodos();
+  }, []);
+
 
   const handleChange = async (e) => {
     e.preventDefault();
@@ -17,7 +45,12 @@ const UpdateTodo = () => {
         headers: { "Content-Type": "application/json" },
         body,
       });
-      window.location = "/";
+      const finalResponse= await response.json();
+      const updatedTodo = [...todo,finalResponse];
+      console.log("==a==",finalResponse);
+      setTodo(updatedTodo)
+      console.log(response)
+
     } catch (error) {
       console.log(error.message);
     }
@@ -56,7 +89,7 @@ const UpdateTodo = () => {
           </div>
         </div>
 
-        <ListTodo />
+        <ListTodo todo={todo} handleClick={handleClick} />
       </div>
     </>
   );

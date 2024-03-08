@@ -1,29 +1,20 @@
 import React, { useState, useEffect } from "react";
 import EditTodo from "./EditTodo";
 
-const ListTodo = () => {
-  const [todo, setTodo] = useState([]);
+const ListTodo = ({todo, handleClick}) => {
 
   const deleteTodo = async (id) => {
     const deleteTodo = await fetch(`http://localhost:4000/todos/${id}`, {
       method: "DELETE",
     });
-    setTodo(todo.filter((todo) => todo.todo_id !== id));
+
+    const item = todo.filter((todo) => todo.todo_id !== id);
+
+     
+     handleClick(item);
   };
 
-  const getTodos = async () => {
-    try {
-      const response = await fetch("http://localhost:4000/todos");
-      const jsonData = await response.json();
-      setTodo(jsonData);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
 
-  useEffect(() => {
-    getTodos();
-  }, []);
 
   return (
     <div>
