@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import EditTodo from "./EditTodo";
 
-const ListTodo = ({todo, handleClick}) => {
-
+const ListTodo = ({ todo, handleClick }) => {
+  // Delete Api
   const deleteTodo = async (id) => {
     const deleteTodo = await fetch(`http://localhost:4000/todos/${id}`, {
       method: "DELETE",
@@ -10,11 +10,9 @@ const ListTodo = ({todo, handleClick}) => {
 
     const item = todo.filter((todo) => todo.todo_id !== id);
 
-     
-     handleClick(item);
+    // data sending child to parent
+    handleClick(item);
   };
-
-
 
   return (
     <div>
@@ -26,7 +24,9 @@ const ListTodo = ({todo, handleClick}) => {
           <tr className="" key={todo.todo_id}>
             <div className=" flex mt-4">
               <td>{todo.description}</td>
-              <td className="btn btn-success ml-24"><EditTodo todo={todo} /></td>
+              <td className="btn btn-success ml-24">
+                <EditTodo todo={todo} />
+              </td>
               <td
                 className="btn btn-danger ml-4"
                 onClick={() => deleteTodo(todo.todo_id)}

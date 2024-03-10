@@ -4,17 +4,15 @@ import ListTodo from "./ListTodo";
 const UpdateTodo = () => {
   const [input, setInput] = useState("");
   const [todo, setTodo] = useState([]);
-  
+
   const handleClick = (item) => {
     // Some data you want to send to the parent
-     setTodo(item);
+    setTodo(item);
 
-    
     // Call the callback function provided by the parent with the data
-    
   };
 
-  
+  // Get Api
 
   const getTodos = async () => {
     try {
@@ -26,11 +24,9 @@ const UpdateTodo = () => {
     }
   };
 
-
   useEffect(() => {
     getTodos();
   }, []);
-
 
   const handleChange = async (e) => {
     e.preventDefault();
@@ -40,17 +36,18 @@ const UpdateTodo = () => {
       });
       console.log(body);
 
+      // Post Api
+
       const response = await fetch("http://localhost:4000/todos", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body,
       });
-      const finalResponse= await response.json();
-      const updatedTodo = [...todo,finalResponse];
-      console.log("==a==",finalResponse);
-      setTodo(updatedTodo)
-      console.log(response)
-
+      const finalResponse = await response.json();
+      const updatedTodo = [...todo, finalResponse];
+      console.log("==a==", finalResponse);
+      setTodo(updatedTodo);
+      console.log(response);
     } catch (error) {
       console.log(error.message);
     }
