@@ -1,9 +1,10 @@
-import UpdateTodo from "./Components/ UpdateTodo";
+import AllTodos from "./Components/ AllTodo";
+
 
 function App() {
   return (
     <>
-      <UpdateTodo />
+      <AllTodos />
     </>
   );
 }

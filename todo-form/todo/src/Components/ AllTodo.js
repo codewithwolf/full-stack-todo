@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ListTodo from "./ListTodo";
 
-const UpdateTodo = () => {
+const AllTodos = () => {
   const [input, setInput] = useState("");
   const [todo, setTodo] = useState([]);
 
@@ -92,4 +92,4 @@ const UpdateTodo = () => {
   );
 };
 
-export default UpdateTodo;
+export default AllTodos;
