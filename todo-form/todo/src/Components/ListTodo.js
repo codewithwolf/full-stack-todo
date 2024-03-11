@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import EditTodo from "./EditTodo";
 
+
+
 const ListTodo = ({ todo, handleClick }) => {
   // Delete Api
+   
   const deleteTodo = async (id) => {
     const deleteTodo = await fetch(`http://localhost:4000/todos/${id}`, {
       method: "DELETE",
@@ -25,7 +28,11 @@ const ListTodo = ({ todo, handleClick }) => {
             <div className=" flex mt-4">
               <td>{todo.description}</td>
               <td className="btn btn-success ml-24">
-                <EditTodo todo={todo} />
+                 
+       
+              <EditTodo todo={todo}  />
+
+
               </td>
               <td
                 className="btn btn-danger ml-4"

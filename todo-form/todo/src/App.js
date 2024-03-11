@@ -1,4 +1,4 @@
-import AllTodos from "./Components/ AllTodo";
+import AllTodos from "./Components/AllTodo";
 
 
 function App() {

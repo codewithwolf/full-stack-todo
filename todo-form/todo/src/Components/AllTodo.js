@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ListTodo from "./ListTodo";
 
+
+
 const AllTodos = () => {
   const [input, setInput] = useState("");
   const [todo, setTodo] = useState([]);
@@ -11,6 +13,9 @@ const AllTodos = () => {
 
     // Call the callback function provided by the parent with the data
   };
+
+  
+ 
 
   // Get Api
 
@@ -30,6 +35,7 @@ const AllTodos = () => {
 
   const handleChange = async (e) => {
     e.preventDefault();
+    setInput("");
     try {
       const body = JSON.stringify({
         description: input,
@@ -43,6 +49,7 @@ const AllTodos = () => {
         headers: { "Content-Type": "application/json" },
         body,
       });
+      
       const finalResponse = await response.json();
       const updatedTodo = [...todo, finalResponse];
       console.log("==a==", finalResponse);
@@ -52,6 +59,12 @@ const AllTodos = () => {
       console.log(error.message);
     }
   };
+
+
+
+
+
+  
 
   return (
     <>
@@ -84,10 +97,16 @@ const AllTodos = () => {
               </button>
             </form>
           </div>
+          
         </div>
+        
 
         <ListTodo todo={todo} handleClick={handleClick} />
+        
+        
       </div>
+     
+      
     </>
   );
 };
