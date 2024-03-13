@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ListTodo from "./ListTodo";
 
-
-
 const AllTodos = () => {
   const [input, setInput] = useState("");
+
   const [todo, setTodo] = useState([]);
 
   const handleClick = (item) => {
@@ -14,10 +13,25 @@ const AllTodos = () => {
     // Call the callback function provided by the parent with the data
   };
 
-  
- 
+  const handle = (finalRespons) => {
+    todo.map((todo)=>{
+      if(todo.todo_id===todo){
+        const name = ([...todo, finalRespons])
+        
+         
+
+                                 
+      }
+             
+    })
+   
+     setTodo(finalRespons);
+    console.log(finalRespons);
+  };
 
   // Get Api
+
+  
 
   const getTodos = async () => {
     try {
@@ -49,7 +63,7 @@ const AllTodos = () => {
         headers: { "Content-Type": "application/json" },
         body,
       });
-      
+
       const finalResponse = await response.json();
       const updatedTodo = [...todo, finalResponse];
       console.log("==a==", finalResponse);
@@ -59,12 +73,13 @@ const AllTodos = () => {
       console.log(error.message);
     }
   };
+   
 
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
-
-
-
-  
+  // const toggleModal = () => {
+  //     setIsModalOpen(!isModalOpen); // Toggle the modal state
+  // };
 
   return (
     <>
@@ -97,18 +112,16 @@ const AllTodos = () => {
               </button>
             </form>
           </div>
-          
         </div>
-        
 
-        <ListTodo todo={todo} handleClick={handleClick} />
-        
-        
+        <ListTodo todo={todo} handleClick={handleClick} handle={handle} />
       </div>
-     
-      
     </>
   );
 };
 
 export default AllTodos;
+
+
+
+

@@ -10,7 +10,6 @@ app.post("/todos", async (req, res) => {
   try {
     const { description } = req.body;
 
-    
     const newTodo = await pool.query(
       "INSERT INTO todo(description) VALUES ($1) RETURNING *",
       [description]
@@ -37,6 +36,8 @@ app.get("/todos/:id", async (req, res) => {
     const todo = await pool.query("SELECT * FROM todo WHERE todo_id = $1", [
       id,
     ]);
+
+
     res.json(todo.rows[0]);
   } catch (error) {
     console.log(error.message);
@@ -71,3 +72,12 @@ app.delete("/todos/:id", async (req, res) => {
 app.listen(4000, "localhost", () => {
   console.log("server is working on http://localhost:4000)");
 });
+
+ 
+
+ 
+ 
+ 
+ 
+
+  
