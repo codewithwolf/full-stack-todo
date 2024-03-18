@@ -3,6 +3,7 @@ import React, { useState } from "react";
 const EditTodo = ({ todo, handle }) => {
   const [description, setDescription] = useState(todo.description);
   const [name, setName] = useState(false);
+  
   const myButton = () => {
     setName(true);
   };
@@ -29,9 +30,13 @@ const EditTodo = ({ todo, handle }) => {
         }
       );
 
-      const finalRespons = await response.json();
+       const finalRespons = await response.json();
+       
+      
+  
+     
 
-      handle(finalRespons);
+       handle(todo.todo_id, description);
       setName(false);
 
       // window.location = "/";

@@ -5,6 +5,7 @@ const AllTodos = () => {
   const [input, setInput] = useState("");
 
   const [todo, setTodo] = useState([]);
+ 
 
   const handleClick = (item) => {
     // Some data you want to send to the parent
@@ -13,21 +14,22 @@ const AllTodos = () => {
     // Call the callback function provided by the parent with the data
   };
 
-  const handle = (finalRespons) => {
-    todo.map((todo)=>{
-      if(todo.todo_id===todo){
-        const name = ([...todo, finalRespons])
+  const handle = (todo_id, description) => {
+   
+    setTodo((todo)=>{
+      return todo.map(eachtodo=>{
+        return eachtodo.todo_id === todo_id
+        ? {todo_id, description}
+        : eachtodo
+      })
+    })
         
          
 
                                  
       }
              
-    })
-   
-     setTodo(finalRespons);
-    console.log(finalRespons);
-  };
+    
 
   // Get Api
 
@@ -66,7 +68,7 @@ const AllTodos = () => {
 
       const finalResponse = await response.json();
       const updatedTodo = [...todo, finalResponse];
-      console.log("==a==", finalResponse);
+      console.log(updatedTodo);
       setTodo(updatedTodo);
       console.log(response);
     } catch (error) {
